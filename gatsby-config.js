@@ -4,7 +4,7 @@ const siteMetadata = {
   author: `@kalebmckelvey`,
   copyright: "KMK Studios LLC",
   description: `From agency projects to side gigs for freelancers, gatsby themes provide simple and elegant designs with easy shadowing to create performant and high quality ux sites.`,
-  gATrackingID: "", // google analytics tracking id
+  gATrackingID: "UA-139738922-1", // google analytics tracking id
   icon: "src/images/favicon-32x32.png",
   pathPrefix: "",
   postDateFormat: "MMMM Do, YYYY",
@@ -31,7 +31,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-google-analytics",
       options: {
-        trackingId: "UA-139738922-1",
+        trackingId: siteMetadata.gATrackingID,
         // Puts tracking script in the head instead of the body
         head: false,
         // Setting this parameter is optional
