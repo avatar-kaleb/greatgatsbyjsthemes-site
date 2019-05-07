@@ -42,14 +42,11 @@ const ThemeListing = ({ classes }) => {
   }, [])
   return themes.map((theme, index) => {
     const {
-      category,
       demoUrl,
       description,
       githubUrl,
       imgUrl,
-      npmUrl,
       starterUrl,
-      tags,
       title,
     } = theme.data()
 
@@ -64,7 +61,12 @@ const ThemeListing = ({ classes }) => {
           <Divider />
           <CardActions disableActionSpacing>
             {githubUrl && (
-              <a className={classes.link} href={githubUrl} target="_blank">
+              <a
+                className={classes.link}
+                href={githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button
                   className={classes.button}
                   variant="contained"
@@ -75,7 +77,12 @@ const ThemeListing = ({ classes }) => {
               </a>
             )}
             {demoUrl && (
-              <a className={classes.link} href={demoUrl} target="_blank">
+              <a
+                className={classes.link}
+                href={demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button
                   className={classes.button}
                   variant="contained"
@@ -86,7 +93,12 @@ const ThemeListing = ({ classes }) => {
               </a>
             )}
             {starterUrl && (
-              <a className={classes.link} href={starterUrl} target="_blank">
+              <a
+                className={classes.link}
+                href={starterUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <Button
                   className={classes.button}
                   variant="contained"

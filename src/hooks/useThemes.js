@@ -1,4 +1,3 @@
-import React from "react"
 import { getFirebase } from "./firebase"
 
 export const useThemesOnce = async function useThemes() {

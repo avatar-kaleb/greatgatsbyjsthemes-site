@@ -4,8 +4,11 @@ const siteMetadata = {
   author: `@kalebmckelvey`,
   copyright: "KMK Studios LLC",
   description: `From agency projects to side gigs for freelancers, gatsby themes provide simple and elegant designs with easy shadowing to create performant and high quality ux sites.`,
-  icon: "/static/logo-256.png",
+  gATrackingID: "", // google analytics tracking id
+  icon: "src/images/favicon-32x32.png",
   pathPrefix: "",
+  postDateFormat: "MMMM Do, YYYY",
+  postDefaultCategoryID: "other",
   siteUrl: "https://greatgatsbyjsthemes.com",
   title: `Great Gatsby JS Themes`,
 }
@@ -13,13 +16,13 @@ const siteMetadata = {
 const pathPrefix =
   siteMetadata.pathPrefix === "/" ? "" : siteMetadata.pathPrefix
 siteMetadata.rssMetadata = {
-  site_url: siteMetadata.siteUrl + pathPrefix,
-  feed_url: siteMetadata.siteUrl + pathPrefix + siteMetadata.rssUrl,
-  title: siteMetadata.title,
-  description: siteMetadata.description,
-  image_url: `${siteMetadata.siteUrl + pathPrefix}/${siteMetadata.icon}`,
   author: siteMetadata.author,
   copyright: siteMetadata.copyright,
+  description: siteMetadata.description,
+  feed_url: siteMetadata.siteUrl + pathPrefix + siteMetadata.rssUrl,
+  image_url: `${siteMetadata.siteUrl + pathPrefix}/${siteMetadata.icon}`,
+  site_url: siteMetadata.siteUrl + pathPrefix,
+  title: siteMetadata.title,
 }
 
 module.exports = {
@@ -51,21 +54,21 @@ module.exports = {
       },
     },
     `gatsby-plugin-sharp`,
-    // {
-    //   resolve: `gatsby-plugin-manifest`,
-    //   options: {
-    //     name: `gatsby-starter-default`,
-    //     short_name: `starter`,
-    //     start_url: `/`,
-    //     background_color: `#304FFE`,
-    //     theme_color: `#D32F2F`,
-    //     display: `minimal-ui`,
-    //     icon: ``, // This path is relative to the root of the site.
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `gatsby-starter-default`,
+        short_name: `starter`,
+        start_url: `/`,
+        background_color: `#304FFE`,
+        theme_color: `#D32F2F`,
+        display: `minimal-ui`,
+        icon: siteMetadata.icon, // This path is relative to the root of the site.
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // "gatsby-plugin-offline",
+    "gatsby-plugin-offline",
     {
       resolve: `gatsby-plugin-material-ui`,
       options: {

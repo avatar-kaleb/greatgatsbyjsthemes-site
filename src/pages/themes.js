@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 import { withStyles } from "@material-ui/core/styles"
 
 import Fade from "@material-ui/core/Fade"
@@ -12,7 +11,14 @@ const styles = theme => ({})
 
 const ThemesPage = ({ classes }) => (
   <Layout>
-    <SEO title="Themes" keywords={[`gatsby js starters`, `gatsby js themes`, 'great gatsby js themes']} />
+    <SEO
+      title="Themes"
+      keywords={[
+        `gatsby js starters`,
+        `gatsby js themes`,
+        "great gatsby js themes",
+      ]}
+    />
     <Fade in timeout={{ enter: fadeInTransitionTime }}>
       <div>
         <Themes />
