@@ -1,9 +1,29 @@
+const regexExcludeRobots = /^(?!\/(dev-404-page|404|offline-plugin-app-shell-fallback|tags|categories)).*$/
+
+const siteMetadata = {
+  author: `@kalebmckelvey`,
+  copyright: "KMK Studios LLC",
+  description: `From agency projects to side gigs for freelancers, gatsby themes provide simple and elegant designs with easy shadowing to create performant and high quality ux sites.`,
+  icon: "/static/logo-256.png",
+  pathPrefix: "",
+  siteUrl: "https://greatgatsbyjsthemes.com",
+  title: `Great Gatsby JS Themes`,
+}
+
+const pathPrefix =
+  siteMetadata.pathPrefix === "/" ? "" : siteMetadata.pathPrefix
+siteMetadata.rssMetadata = {
+  site_url: siteMetadata.siteUrl + pathPrefix,
+  feed_url: siteMetadata.siteUrl + pathPrefix + siteMetadata.rssUrl,
+  title: siteMetadata.title,
+  description: siteMetadata.description,
+  image_url: `${siteMetadata.siteUrl + pathPrefix}/${siteMetadata.icon}`,
+  author: siteMetadata.author,
+  copyright: siteMetadata.copyright,
+}
+
 module.exports = {
-  siteMetadata: {
-    title: `Great Gatsby JS Themes`,
-    description: `From agency projects to side gigs for freelancers, gatsby themes provide simple and elegant designs with easy shadowing to create performant and high quality ux sites.`,
-    author: `@kalebmckelvey`,
-  },
+  siteMetadata: siteMetadata,
   plugins: [
     {
       resolve: "gatsby-transformer-remark",
@@ -31,21 +51,21 @@ module.exports = {
       },
     },
     `gatsby-plugin-sharp`,
-    {
-      resolve: `gatsby-plugin-manifest`,
-      options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#D32F2F`,
-        theme_color: `#D32F2F`,
-        display: `minimal-ui`,
-        icon: `src/images/favicon-32x32.png`, // This path is relative to the root of the site.
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-manifest`,
+    //   options: {
+    //     name: `gatsby-starter-default`,
+    //     short_name: `starter`,
+    //     start_url: `/`,
+    //     background_color: `#304FFE`,
+    //     theme_color: `#D32F2F`,
+    //     display: `minimal-ui`,
+    //     icon: ``, // This path is relative to the root of the site.
+    //   },
+    // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // 'gatsby-plugin-offline',
+    // "gatsby-plugin-offline",
     {
       resolve: `gatsby-plugin-material-ui`,
       options: {
@@ -58,6 +78,106 @@ module.exports = {
             useNextVariants: true,
           },
         },
+      },
+    },
+    {
+      resolve: "gatsby-plugin-feed",
+      options: {
+        query: `
+        {
+          site {
+            siteMetadata {
+              rssMetadata {
+                site_url
+                feed_url
+                title
+                description
+                image_url
+                author
+                copyright
+              }
+            }
+          }
+        }
+      `,
+        feeds: [
+          {
+            serialize: ({
+              query: {
+                site: {
+                  siteMetadata: { rssMetadata },
+                },
+                allMarkdownRemark,
+              },
+            }) => {
+              return allMarkdownRemark.edges.map(edge => ({
+                categories: edge.node.frontmatter.tags,
+                date: edge.node.frontmatter.date,
+                title: edge.node.frontmatter.title,
+                description: edge.node.excerpt,
+                author: rssMetadata.author,
+                url: rssMetadata.site_url + edge.node.fields.slug,
+                guid: rssMetadata.site_url + edge.node.fields.slug,
+                html: edge.node.html,
+              }))
+            },
+            query: `
+            {
+            allMarkdownRemark(
+              limit: 10
+              sort: { fields: [frontmatter___date], order: DESC }
+            ) {
+              edges {
+                node {
+                  excerpt
+                  frontmatter {
+                    title
+                    tags
+                    date
+                    category
+                  }
+                  fields {
+                    slug
+                  }
+                  html
+                  timeToRead
+                }
+              }
+            }
+            }
+          `,
+            output: "/rss.xml",
+            title: "Blog RSS Feed",
+          },
+        ],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-sitemap",
+      options: {
+        output: "/sitemap.xml",
+        query: `
+          {
+            site {
+              siteMetadata {
+                siteUrl
+              }
+            }
+
+            allSitePage(
+              filter: {
+                path: {
+                  regex: "${regexExcludeRobots}"
+                }
+              }
+            ) {
+              edges {
+                node {
+                  path
+                }
+              }
+            }
+        }`,
       },
     },
   ],

@@ -35,6 +35,8 @@
     "typography": "^0.16.19"
   },
   "devDependencies": {
+    "gatsby-plugin-feed": "^2.2.0",
+    "gatsby-plugin-sitemap": "^2.1.0",
     "prettier": "^1.16.4"
   },
   "keywords": [

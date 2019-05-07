@@ -17,7 +17,7 @@ const ThemesPage = ({
   },
 }) => (
   <Layout>
-    <SEO title="Themes" keywords={[`gatsby`, `gatsby themes`]} />
+    <SEO title="Blog" keywords={[`gatsby js blog`, `gatsby js themes blog`, 'great gatsby js themes blog']} />
     <Fade in timeout={{ enter: fadeInTransitionTime }}>
       <div>
         <Blog postEdges={postEdges} />

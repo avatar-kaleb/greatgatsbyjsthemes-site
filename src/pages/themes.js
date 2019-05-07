@@ -12,7 +12,7 @@ const styles = theme => ({})
 
 const ThemesPage = ({ classes }) => (
   <Layout>
-    <SEO title="Themes" keywords={[`gatsby`, `gatsby themes`]} />
+    <SEO title="Themes" keywords={[`gatsby js starters`, `gatsby js themes`, 'great gatsby js themes']} />
     <Fade in timeout={{ enter: fadeInTransitionTime }}>
       <div>
         <Themes />

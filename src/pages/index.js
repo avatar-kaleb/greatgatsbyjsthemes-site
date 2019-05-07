@@ -9,7 +9,7 @@ import { fadeInTransitionTime } from "../constants/transitions"
 
 const IndexPage = ({ classes }) => (
   <Layout>
-    <SEO title="Home" keywords={[`gatsby`, `gatsby themes`]} />
+    <SEO title="Home" keywords={[`gatsby js starters`, `gatsby js themes`, 'great gatsby js themes']} />
     <Fade in timeout={{ enter: fadeInTransitionTime }}>
       <div>
         <Home />
