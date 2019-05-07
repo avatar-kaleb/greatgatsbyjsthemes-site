@@ -71,7 +71,7 @@ const BlogPost = ({ classes, data }) => {
               <h1 className={classes.title}>{post.title}</h1>
               <p>
                 <Moment format={postDateFormat}>{post.date}</Moment> ~ 🍵{" "}
-                {post.timeToRead} min read
+                {postNode.timeToRead} min read
               </p>
             </Grid>
           </Grid>
