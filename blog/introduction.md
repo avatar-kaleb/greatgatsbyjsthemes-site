@@ -32,7 +32,7 @@ Secondly, I want to continue creating a few common material-ui themes that can h
 The priority for me goes as follows:
 
   1. Add new themes
-  1. 1. Monitor and track usage of the site1. Decide on next features if usage is high enough to do so
+  1. Monitor and track usage of the site1. Decide on next features if usage is high enough to do so
 
 I've always been a fan of the "do something" principle, meaning not to wait until the perfect moment or perfect product is completed, but to do something that works good enough to see what happens!
 
